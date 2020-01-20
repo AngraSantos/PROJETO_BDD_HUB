@@ -1,12 +1,16 @@
 package br.com.rsinet.hub_bdd;
 
+import org.openqa.selenium.WebDriver;
+
 import cucumber.api.PendingException;
 import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.Entao;
 import cucumber.api.java.pt.Quando;
 
 public class Steps {
-
+	
+	WebDriver driver;
+	
 	@Dado("^que o cliente ja esteja no site de eletronicos da Advantage$")
 	public void que_o_cliente_ja_esteja_no_site_de_eletronicos_da_Advantage() throws Throwable {
 	    // Write code here that turns the phrase above into concrete actions
