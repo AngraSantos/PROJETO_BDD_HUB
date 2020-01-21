@@ -1,4 +1,4 @@
-package br.com.rsinet.hub_bdd;
+package br.com.rsinet.hub_bdd.runners;
 
 import org.openqa.selenium.WebDriver;
 
