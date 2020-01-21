@@ -12,15 +12,19 @@ public class Steps {
 	WebDriver driver;
 	
 	@Dado("^que o cliente ja esteja no site de eletronicos da Advantage$")
-	public void que_o_cliente_ja_esteja_no_site_de_eletronicos_da_Advantage() throws Throwable {
+	public WebDriver que_o_cliente_ja_esteja_no_site_de_eletronicos_da_Advantage()  throws Throwable {
 	    // Write code here that turns the phrase above into concrete actions
 	    throw new PendingException();
+
+			
 	}
 
 	@Dado("^ao clicar no icone do login$")
 	public void ao_clicar_no_icone_do_login() throws Throwable {
 	    // Write code here that turns the phrase above into concrete actions
 	    throw new PendingException();
+		
+
 	}
 
 	@Dado("^clique em criar nova conta$")
