@@ -1,6 +1,6 @@
 # language: pt
 
-Funcionalidade: Cadastro de cliente em um site de eletronicos
+Funcionalidade: Cadastro de cliente no site de eletronicos Advantage
 
 Cenario:  Deve fazer um cadastro valido no site
 

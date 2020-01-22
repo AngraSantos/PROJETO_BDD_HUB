@@ -6,11 +6,12 @@ import org.openqa.selenium.support.PageFactory;
 import br.com.rsinet.hub_bdd.driver.DriverFactory;
 import br.com.rsinet.hub_bdd.pageObjects.pageObjectCadastroCliente;
 import br.com.rsinet.hub_bdd.pageObjects.pageObjectTelaInicial;
+import cucumber.api.java.After;
 import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.Entao;
 import cucumber.api.java.pt.Quando;
 
-public class Steps {
+public class StepsCadastro {
 
 	private WebDriver driver;
 	private pageObjectTelaInicial telaInicial;
@@ -122,5 +123,11 @@ public class Steps {
 
 		cadastroCliente.clicarRegistrar();
 
+	}
+	
+	@After
+	public void fechandoDriver() {
+		
+		DriverFactory.FechandoJanela();
 	}
 }
