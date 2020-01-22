@@ -6,11 +6,8 @@ import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
-@CucumberOptions (
-		features = "scr/test/resources/TesteFuncional",
-glue= {"Steps"} )
+@CucumberOptions(features = "src/test/resources/TesteFuncional", glue = {"br.com.rsinet.hub_bdd.stepDefinition"})
 
-public class Runners {
+public class RunnerTest {
 
-	
 }
