@@ -1,9 +1,8 @@
 # language: pt
 
-Funcionalidade: Cadastro de cliente no site de eletronicos Advantage
+Funcionalidade: Cadastro de cliente
 
-Cenario:  Deve fazer um cadastro valido no site
-
+Contexto:
 Dado cliente esta no site de eletronicos da AdvantageDEMO
 E clicar no icone do login 
 E depois clicar em criar novo usuario
@@ -20,4 +19,13 @@ E preenche o endereco
 E preenche o estado
 E preenche o codigo Postal
 Quando confirma que esta de acordo com os termos de uso do site
-Entao cliente tera seu cadastro efetuado com sucesso
+
+@cadastroValido
+Cenario: 
+E cliente tera seu cadastro efetuado com sucesso
+Entao tira um print da ela
+
+@cadastroInvalido
+Cenario: 
+E cliente nao consegue se concluir cadastro
+Entao tira um Print da tela
