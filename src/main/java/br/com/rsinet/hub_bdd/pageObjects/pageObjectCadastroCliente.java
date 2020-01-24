@@ -4,12 +4,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.ui.Select;
 
 import br.com.rsinet.hub_bdd.excel.MassaDeDados;
 
 public class pageObjectCadastroCliente {
-	
-	WebDriver driver;
+
+	private WebDriver driver;
+
 	MassaDeDados massaDeDados = new MassaDeDados();
 
 	@FindBy(how = How.NAME, using = "usernameRegisterPage")
@@ -54,14 +56,14 @@ public class pageObjectCadastroCliente {
 	@FindBy(how = How.ID, using = "register_btnundefined")
 	private WebElement btn_Registrar;
 
-	public void page (WebDriver driver) {
+	public void page(WebDriver driver) {
 		this.driver = driver;
 	}
 
-	public void usuario() throws Exception  {
+	public void usuario() throws Exception {
 		txtbx_Usuario.sendKeys(massaDeDados.usuario());
 	}
-	
+
 	public void email() throws Exception {
 		txtbx_Email.sendKeys(massaDeDados.email());
 	}
@@ -87,7 +89,8 @@ public class pageObjectCadastroCliente {
 	}
 
 	public void pais() throws Exception {
-		select_Pais.sendKeys(massaDeDados.pais());
+		Select select = new Select(select_Pais);
+		select.selectByVisibleText(massaDeDados.pais());
 	}
 
 	public void cidade() throws Exception {

@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import br.com.rsinet.hub_bdd.driver.DriverFactory;
 
 public class pageObjectProduto {
-	
+
 	private WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), 20);
 	
 	@FindBy(how = How.ID, using = "2")
@@ -18,22 +18,19 @@ public class pageObjectProduto {
 
 	@FindBy(how = How.ID, using = "21")
 	private WebElement lnk_altoFalanteHP;
-	
 
 	public void altoFalante() {
-
 		wait.until(ExpectedConditions.elementToBeClickable(lnk_altoFalanteHP));
-		
+
 		JavascriptExecutor executor = (JavascriptExecutor) DriverFactory.getDriver();
 		executor.executeScript("arguments[0].click();", lnk_altoFalanteHP);
 	}
 
 	public void laptop15z() {
-
 		wait.until(ExpectedConditions.elementToBeClickable(lnk_laptopPavilion));
-	
+
 		JavascriptExecutor executor = (JavascriptExecutor) DriverFactory.getDriver();
 		executor.executeScript("arguments[0].click();", lnk_laptopPavilion);
-	}	
-	
+	}
+
 }

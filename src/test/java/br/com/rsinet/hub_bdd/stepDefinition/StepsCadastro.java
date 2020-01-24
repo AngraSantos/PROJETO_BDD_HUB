@@ -1,6 +1,5 @@
 package br.com.rsinet.hub_bdd.stepDefinition;
 
-
 import static org.junit.Assert.assertEquals;
 
 import org.openqa.selenium.JavascriptExecutor;
@@ -17,19 +16,19 @@ import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.Entao;
 import cucumber.api.java.pt.Quando;
 
-
-
 public class StepsCadastro {
 
 	private WebDriver driver;
 	private pageObjectTelaInicial telaInicial;
 	private pageObjectCadastroCliente cadastroCliente;
 	JavascriptExecutor js;
-	
+
 	@Before
 	public void Driver() {
-		
+
 		driver = DriverFactory.inicioDriver();
+		telaInicial = PageFactory.initElements(driver, pageObjectTelaInicial.class);
+		cadastroCliente = PageFactory.initElements(driver, pageObjectCadastroCliente.class);
 	}
 
 	@Dado("^cliente esta no site de eletronicos da AdvantageDEMO$")
@@ -41,7 +40,6 @@ public class StepsCadastro {
 	@Dado("^clicar no icone do login$")
 	public void clicar_no_icone_do_login() throws Throwable {
 
-		telaInicial = PageFactory.initElements(driver, pageObjectTelaInicial.class);
 		telaInicial.clicarBotaoLogin();
 	}
 
@@ -54,7 +52,6 @@ public class StepsCadastro {
 	@Dado("^preenche o usuario$")
 	public void preenche_o_usuario() throws Throwable {
 
-		cadastroCliente = PageFactory.initElements(driver, pageObjectCadastroCliente.class);
 		cadastroCliente.usuario();
 	}
 
@@ -138,18 +135,22 @@ public class StepsCadastro {
 		cadastroCliente.clicarRegistrar();
 
 		js = (JavascriptExecutor) driver;
-        js.executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 3000);");
+		js.executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 3000);");
 
-        String url = driver.getCurrentUrl();
-        assertEquals(url, "http://www.advantageonlineshopping.com/#/");
+		String url = driver.getCurrentUrl();
+		assertEquals(url, "http://www.advantageonlineshopping.com/#/");
 	}
 
 	@Quando("^cliente nao consegue se concluir cadastro$")
 	public void cliente_nao_consegue_se_concluir_cadastro() throws Throwable {
 
 		cadastroCliente.clicarRegistrar();
+
 		js = (JavascriptExecutor) driver;
 		js.executeScript("javascript:window.scrollBy(0,200)");
+
+		String url = driver.getCurrentUrl();
+		assertEquals(url, "http://www.advantageonlineshopping.com/#/register");
 	}
 
 	@Entao("^tira um print da ela$")
@@ -158,7 +159,7 @@ public class StepsCadastro {
 		Utilitario.getScreenshot(driver);
 
 		js = (JavascriptExecutor) driver;
-        js.executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 3000);");
+		js.executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 3000);");
 	}
 
 	@Entao("^tira um Print da tela$")
