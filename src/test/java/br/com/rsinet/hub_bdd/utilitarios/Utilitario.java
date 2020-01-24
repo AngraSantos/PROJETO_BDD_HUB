@@ -1,4 +1,4 @@
-package br.com.rsinet.hub_bdd.report;
+package br.com.rsinet.hub_bdd.utilitarios;
 
 import java.io.File;
 import java.io.IOException;

@@ -13,68 +13,68 @@ import cucumber.api.java.Before;
 import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.Entao;
 
-public class StepBuscarPelaLupa {
-	
-	WebDriver driver;
-	pageObjectTelaInicial telaInicial;
-	pageObjectProduto produto;
+public class StepBuscarPelaTelaInicial {
+
+	private WebDriver driver;
+	private pageObjectTelaInicial telaInicial;
+	private pageObjectProduto produto;
 	JavascriptExecutor js;
 	
-	
+
 	@Before
-	public void Driver () {
-		
+	public void Driver() {
+
 		driver = DriverFactory.inicioDriver();
 	}
-	
-	@Dado("^na lupa escreva o nome do item desejado$")
-	public void na_lupa_escreva_o_nome_do_item_desejado() throws Throwable {
 
-		telaInicial = PageFactory.initElements(driver, pageObjectTelaInicial.class);
-		telaInicial.deveBuscarAlgumProdutoPelaLupa("laptop");	
+	@Dado("^cliente esta no site de eletronico da AdvantageDEMO$")
+	public void cliente_esta_no_site_de_eletronico_da_AdvantageDEMO() throws Throwable {
+
+		driver.get("http:www.advantageonlineshopping.com/#/");
 	}
 
-	@Dado("^produto encontrado clique nele$")
-	public void produto_encontrado_clique_nele() throws Throwable {
+	@Dado("^deve selecionar um produto na tela inicial$")
+	public void deve_selecionar_um_produto_na_tela_inicial() throws Throwable {
+		
+		telaInicial = PageFactory.initElements(driver, pageObjectTelaInicial.class);
+		telaInicial.deveClicarEmAlgumProdutoDaTelaInicialComSucesso();
+	}
+
+	@Entao("^pode escolher um produto$")
+	public void pode_escolher_um_produto() throws Throwable {
 		
 		produto = PageFactory.initElements(driver, pageObjectProduto.class);
-		produto.laptop15z();
+		produto.altoFalante();
 		
 		js = (JavascriptExecutor) driver;         
 		js.executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 2000);");
-		
 	}
-	
-	@Dado("^na lupa escreva o nome do produto desejado que nao tenha no site$")
-	public void na_lupa_escreva_o_nome_do_produto_desejado_que_nao_tenha_no_site() throws Throwable {
+
+	@Dado("^deve selecionar um produto na tela inicial que esteja com erro$")
+	public void deve_selecionar_um_produto_na_tela_inicial_que_esteja_com_erro() throws Throwable {
 		
 		telaInicial = PageFactory.initElements(driver, pageObjectTelaInicial.class);
-		telaInicial.deveBuscarAlgumProdutoPelaLupa("HP ZBOOK G2 MOBILE WORKSTATION");
-
+		telaInicial.deveClicarEmAlgumProdutoDaTelaInicialComErro();
+		
 		js = (JavascriptExecutor) driver;         
 		js.executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 2000);");
 	}
 
-	
-	@Entao("^ele ira tirar um print$")
-	public void ele_ira_tirar_um_print() throws Throwable {
+	@Entao("^deve printar a tela$")
+	public void deve_printar_a_tela() throws Throwable {
 
 		Utilitario.getScreenshot(driver);
 	}
 
-
-	@Entao("^ele ira tirar um Print$")
-	public void ele_ira_tirar_um_Print() throws Throwable {
+	@Entao("^deve Printar a tela$")
+	public void deve_Printar_a_tela() throws Throwable {
 
 		Utilitario.getScreenshot(driver);
 	}
-	
+
 	@After
-	public void fechandoDriver () {
-		
+	private void fechandoDriver() {
+
 		DriverFactory.FechandoJanela();
 	}
-
-
-
 }

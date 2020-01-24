@@ -1,5 +1,18 @@
 # language: pt
 
-Funcionalidade: Buscar algum produto atravez da tela inicial do site de acordo com as opcoes disponiveis
+Funcionalidade: Selecionar algum produto disponivel na tela inicial
 
-Cenario: Deve clicar em algum item da tela e selecionar um produto
+Contexto:
+Dado cliente esta no site de eletronico da AdvantageDEMO
+
+@SelecionouUmProdutoComSucesso
+Cenario:
+E deve selecionar um produto na tela inicial
+E pode escolher um produto
+Entao deve printar a tela
+
+
+@SelecionouUmProdutoComFalha
+Cenario:
+E deve selecionar um produto na tela inicial que esteja com erro
+Entao deve Printar a tela

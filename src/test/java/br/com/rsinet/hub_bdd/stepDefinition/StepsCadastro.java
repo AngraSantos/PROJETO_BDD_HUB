@@ -1,52 +1,41 @@
 package br.com.rsinet.hub_bdd.stepDefinition;
 
-import static junit.framework.Assert.assertTrue;
 
-import org.openqa.selenium.By;
+import static org.junit.Assert.assertEquals;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
 import br.com.rsinet.hub_bdd.driver.DriverFactory;
 import br.com.rsinet.hub_bdd.pageObjects.pageObjectCadastroCliente;
 import br.com.rsinet.hub_bdd.pageObjects.pageObjectTelaInicial;
-import br.com.rsinet.hub_bdd.report.Utilitario;
+import br.com.rsinet.hub_bdd.utilitarios.Utilitario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.Entao;
 import cucumber.api.java.pt.Quando;
 
+
+
 public class StepsCadastro {
 
 	private WebDriver driver;
 	private pageObjectTelaInicial telaInicial;
 	private pageObjectCadastroCliente cadastroCliente;
-	ExtentReports extent;
-	ExtentTest logger;
 	JavascriptExecutor js;
-
+	
 	@Before
-	public void setup() {
-
-		ExtentHtmlReporter report = new ExtentHtmlReporter("./Reports/CadastroCliente_bdd.html");
-
-		extent = new ExtentReports();
-		extent.attachReporter(report);
-		logger = extent.createTest("Cadastrando Cliente");
-
+	public void Driver() {
+		
+		driver = DriverFactory.inicioDriver();
 	}
 
 	@Dado("^cliente esta no site de eletronicos da AdvantageDEMO$")
 	public void cliente_esta_no_site_de_eletronicos_da_AdvantageDEMO() throws Throwable {
 
-		driver = DriverFactory.inicioDriver();
+		driver.get("http:www.advantageonlineshopping.com/#/");
 	}
 
 	@Dado("^clicar no icone do login$")
@@ -62,8 +51,8 @@ public class StepsCadastro {
 		telaInicial.clicarCriarUsuario();
 	}
 
-	@Dado("^preeche o usuario$")
-	public void preeche_o_usuario() throws Throwable {
+	@Dado("^preenche o usuario$")
+	public void preenche_o_usuario() throws Throwable {
 
 		cadastroCliente = PageFactory.initElements(driver, pageObjectCadastroCliente.class);
 		cadastroCliente.usuario();
@@ -147,12 +136,12 @@ public class StepsCadastro {
 	public void cliente_tera_seu_cadastro_efetuado_com_sucesso() throws Exception {
 
 		cadastroCliente.clicarRegistrar();
-	
-		String url = driver.getCurrentUrl();		
-		assertTrue(url.contains("http://www.advantageonlineshopping.com/#/"));
-		
+
 		js = (JavascriptExecutor) driver;
         js.executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 3000);");
+
+        String url = driver.getCurrentUrl();
+        assertEquals(url, "http://www.advantageonlineshopping.com/#/");
 	}
 
 	@Quando("^cliente nao consegue se concluir cadastro$")
@@ -176,7 +165,6 @@ public class StepsCadastro {
 	public void tira_um_Print_da_tela() throws Throwable {
 
 		Utilitario.getScreenshot(driver);
-
 	}
 
 	@After

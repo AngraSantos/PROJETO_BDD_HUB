@@ -46,6 +46,7 @@ public class pageObjectTelaInicial {
 	}
 	
 	public void deveClicarEmAlgumProdutoDaTelaInicialComSucesso() {
+		
 		JavascriptExecutor executor = (JavascriptExecutor) DriverFactory.getDriver();
 		executor.executeScript("arguments[0].click();", lnk_CxDeSom);
 	}
