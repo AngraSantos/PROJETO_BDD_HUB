@@ -13,8 +13,8 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "src/test/resources/TesteFuncional", 
 glue = { "br.com.rsinet.hub_bdd.stepDefinition" },
-tags = {"@BuscaPelaLupaComFalha "},
-plugin = { "pretty", "com.cucumber.listener.ExtentCucumberFormatter:target/reports/reports.html"},
+//tags = {"@BuscaPelaLupaComFalha "},
+plugin = { "pretty", "com.cucumber.listener.ExtentCucumberFormatter:target/reports.html"},
 monochrome = true)
 
 public class RunnerTest {
