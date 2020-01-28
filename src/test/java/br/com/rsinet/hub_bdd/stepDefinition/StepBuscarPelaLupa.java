@@ -16,6 +16,7 @@ import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.Entao;
+import cucumber.api.java.pt.Quando;
 
 public class StepBuscarPelaLupa {
 
@@ -42,13 +43,13 @@ public class StepBuscarPelaLupa {
 		driver.get("http:www.advantageonlineshopping.com/#/");
 	}
 	
-	@Dado("^na lupa escreva o nome do item desejado$")
+	@Quando("^na lupa escreva o nome do item desejado$")
 	public void na_lupa_escreva_o_nome_do_item_desejado() throws Throwable {
 
 		telaInicial.deveBuscarAlgumProdutoPelaLupa("laptop");
 	}
 
-	@Dado("^produto encontrado clique nele$")
+	@Quando("^produto encontrado clique nele$")
 	public void produto_encontrado_clique_nele() throws Throwable {
 
 		produto.laptop15z();
@@ -68,7 +69,7 @@ public class StepBuscarPelaLupa {
 		assertEquals(url, "http://www.advantageonlineshopping.com/#/product/2?viewAll=laptop");
 	}
 
-	@Dado("^na lupa escreva o nome do produto desejado que nao tenha no site$")
+	@Quando("^na lupa escreva o nome do produto desejado que nao tenha no site$")
 	public void na_lupa_escreva_o_nome_do_produto_desejado_que_nao_tenha_no_site() throws Throwable {
 
 		telaInicial.deveBuscarAlgumProdutoPelaLupa("HP ZBOOK G2 MOBILE WORKSTATION");

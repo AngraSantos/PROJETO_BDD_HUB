@@ -16,6 +16,7 @@ import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.Entao;
+import cucumber.api.java.pt.Quando;
 
 public class StepBuscarPelaTelaInicial {
 
@@ -42,13 +43,13 @@ public class StepBuscarPelaTelaInicial {
 		driver.get("http:www.advantageonlineshopping.com/#/");
 	}
 
-	@Dado("^deve selecionar um produto na tela inicial$")
+	@Quando("^deve selecionar um produto na tela inicial$")
 	public void deve_selecionar_um_produto_na_tela_inicial() throws Throwable {
 
 		telaInicial.deveClicarEmAlgumProdutoDaTelaInicialComSucesso();
 	}
 
-	@Entao("^pode escolher um produto$")
+	@Quando("^pode escolher um produto$")
 	public void pode_escolher_um_produto() throws Throwable {
 
 		produto.altoFalante();
@@ -68,7 +69,7 @@ public class StepBuscarPelaTelaInicial {
 		assertEquals(url, "http://www.advantageonlineshopping.com/#/product/21");
 	}
 
-	@Dado("^deve selecionar um produto na tela inicial que esteja com erro$")
+	@Quando("^deve selecionar um produto na tela inicial que esteja com erro$")
 	public void deve_selecionar_um_produto_na_tela_inicial_que_esteja_com_erro() throws Throwable {
 
 		telaInicial.deveClicarEmAlgumProdutoDaTelaInicialComErro();
