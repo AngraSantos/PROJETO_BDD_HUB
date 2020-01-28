@@ -3,7 +3,7 @@
 Funcionalidade: Buscar produto pela lupa
 
 Contexto: 
-Dado cliente esta no site de eletronico da AdvantageDEMO
+Dado cliente esta no site eletronico da AdvantageDEMO
 
 @BuscaPelaLupaComSucesso
 Cenario:  

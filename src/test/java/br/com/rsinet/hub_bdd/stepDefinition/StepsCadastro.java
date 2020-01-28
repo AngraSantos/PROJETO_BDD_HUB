@@ -2,9 +2,12 @@ package br.com.rsinet.hub_bdd.stepDefinition;
 
 import static org.junit.Assert.assertEquals;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import br.com.rsinet.hub_bdd.driver.DriverFactory;
 import br.com.rsinet.hub_bdd.pageObjects.pageObjectCadastroCliente;
@@ -21,19 +24,23 @@ public class StepsCadastro {
 	private WebDriver driver;
 	private pageObjectTelaInicial telaInicial;
 	private pageObjectCadastroCliente cadastroCliente;
-	JavascriptExecutor js;
+	private JavascriptExecutor js;
+	private WebDriverWait wait;
 
 	@Before
 	public void Driver() {
 
+		/* iniciando o driver */
 		driver = DriverFactory.inicioDriver();
 		telaInicial = PageFactory.initElements(driver, pageObjectTelaInicial.class);
 		cadastroCliente = PageFactory.initElements(driver, pageObjectCadastroCliente.class);
+		wait = new WebDriverWait(driver, 50);
 	}
 
 	@Dado("^cliente esta no site de eletronicos da AdvantageDEMO$")
 	public void cliente_esta_no_site_de_eletronicos_da_AdvantageDEMO() throws Throwable {
 
+		/* site definido */
 		driver.get("http:www.advantageonlineshopping.com/#/");
 	}
 
@@ -126,7 +133,6 @@ public class StepsCadastro {
 	public void confirma_que_esta_de_acordo_com_os_termos_de_uso_do_site() {
 
 		cadastroCliente.clicarCheckBox();
-
 	}
 
 	@Quando("^cliente tera seu cadastro efetuado com sucesso$")
@@ -134,10 +140,19 @@ public class StepsCadastro {
 
 		cadastroCliente.clicarRegistrar();
 
-		js = (JavascriptExecutor) driver;
-		js.executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 3000);");
+		/*
+		 * tempo para aguardar o print na pagina correta da tela e o assert funcionar da
+		 * elemento da tela: nome usuario
+		 */
+		wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("/html[1]/body[1]/header[1]/nav[1]/ul[1]/li[3]/a[1]/span[1]")));
 
+
+//		js = (JavascriptExecutor) driver;
+//		js.executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 2000);");
+		
 		String url = driver.getCurrentUrl();
+		System.out.println(url);
 		assertEquals(url, "http://www.advantageonlineshopping.com/#/");
 	}
 
@@ -146,10 +161,22 @@ public class StepsCadastro {
 
 		cadastroCliente.clicarRegistrar();
 
+		/* rolar a tela para baixo */
 		js = (JavascriptExecutor) driver;
 		js.executeScript("javascript:window.scrollBy(0,200)");
 
+		/*
+		 * tempo para aguardar o print na pagina correta da tela e o assert funcionar da
+		 * elemento da tela: ja tenho uma conta
+		 */
+		wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("/html[1]/body[1]/div[3]/section[1]/article[1]/sec-form[1]/div[2]/label[2]")));
+
+//		js = (JavascriptExecutor) driver;
+//		js.executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 2000);");
+		
 		String url = driver.getCurrentUrl();
+		System.out.println(url);
 		assertEquals(url, "http://www.advantageonlineshopping.com/#/register");
 	}
 
@@ -157,9 +184,6 @@ public class StepsCadastro {
 	public void tira_um_print_da_ela() throws Throwable {
 
 		Utilitario.getScreenshot(driver);
-
-		js = (JavascriptExecutor) driver;
-		js.executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 3000);");
 	}
 
 	@Entao("^tira um Print da tela$")
