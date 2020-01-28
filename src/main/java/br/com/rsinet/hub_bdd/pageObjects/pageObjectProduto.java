@@ -11,7 +11,7 @@ import br.com.rsinet.hub_bdd.driver.DriverFactory;
 
 public class pageObjectProduto {
 
-	private WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), 20);
+	private WebDriverWait wait = new WebDriverWait(DriverFactory.inicioDriver(), 20);
 	
 	@FindBy(how = How.ID, using = "2")
 	private WebElement lnk_laptopPavilion;
@@ -22,14 +22,14 @@ public class pageObjectProduto {
 	public void altoFalante() {
 		wait.until(ExpectedConditions.elementToBeClickable(lnk_altoFalanteHP));
 
-		JavascriptExecutor executor = (JavascriptExecutor) DriverFactory.getDriver();
+		JavascriptExecutor executor = (JavascriptExecutor) DriverFactory.inicioDriver();
 		executor.executeScript("arguments[0].click();", lnk_altoFalanteHP);
 	}
 
 	public void laptop15z() {
 		wait.until(ExpectedConditions.elementToBeClickable(lnk_laptopPavilion));
 
-		JavascriptExecutor executor = (JavascriptExecutor) DriverFactory.getDriver();
+		JavascriptExecutor executor = (JavascriptExecutor) DriverFactory.inicioDriver();
 		executor.executeScript("arguments[0].click();", lnk_laptopPavilion);
 	}
 

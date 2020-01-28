@@ -30,7 +30,7 @@ public class pageObjectTelaInicial {
 
 	public void deveClicarEmAlgumProdutoDaTelaInicialComErro() {
 		
-		JavascriptExecutor executor = (JavascriptExecutor) DriverFactory.getDriver();
+		JavascriptExecutor executor = (JavascriptExecutor) DriverFactory.inicioDriver();
 		executor.executeScript("arguments[0].click();", lnk_laptopEliteBookErro);
 	}
 
@@ -41,13 +41,13 @@ public class pageObjectTelaInicial {
 	
 	public void clicarCriarUsuario() {
 		
-		JavascriptExecutor executor = (JavascriptExecutor) DriverFactory.getDriver();
+		JavascriptExecutor executor = (JavascriptExecutor) DriverFactory.inicioDriver();
 		executor.executeScript("arguments[0].click();", lnk_CriarUsuario);
 	}
 	
 	public void deveClicarEmAlgumProdutoDaTelaInicialComSucesso() {
 		
-		JavascriptExecutor executor = (JavascriptExecutor) DriverFactory.getDriver();
+		JavascriptExecutor executor = (JavascriptExecutor) DriverFactory.inicioDriver();
 		executor.executeScript("arguments[0].click();", lnk_CxDeSom);
 	}
 
