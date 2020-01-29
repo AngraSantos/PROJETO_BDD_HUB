@@ -2,6 +2,8 @@ package br.com.rsinet.hub_bdd.stepDefinition;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -41,6 +43,7 @@ public class StepBuscarPelaTelaInicial {
 
 		/* site definido */
 		driver.get("http:www.advantageonlineshopping.com/#/");
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 
 	@Quando("^deve selecionar um produto na tela inicial$")
