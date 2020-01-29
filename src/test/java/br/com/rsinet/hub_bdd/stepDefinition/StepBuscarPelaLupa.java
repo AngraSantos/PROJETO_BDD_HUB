@@ -26,7 +26,7 @@ public class StepBuscarPelaLupa {
 	private pageObjectProduto produto;
 	private WebDriver driver;
 	private WebDriverWait wait;
-//	private JavascriptExecutor js;
+//	private JavascriptExecutor  js;
 
 	@Before
 	public void Driver() {
